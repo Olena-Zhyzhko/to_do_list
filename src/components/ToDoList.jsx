@@ -3,7 +3,7 @@ import { useDispatch,
     useSelector } from "react-redux";
     import { getTodos } from '../redux/selectors'
 import ModalToDo from './Modal'
-import {isComplited} from '../redux/todoSlice'
+import {isComplited, removeTodo} from '../redux/todoSlice'
 
 
 export const ToDoList = () => {
@@ -29,6 +29,7 @@ const dispatch = useDispatch();
                     <td>
                         <form>
                             <input type='checkbox' onChange={()=>{dispatch(isComplited(id))}} checked={complited}/>
+                            <button type='button' onClick={()=>dispatch(removeTodo(id))}>Delete</button>
                         </form>
                     </td>
                 </tr>

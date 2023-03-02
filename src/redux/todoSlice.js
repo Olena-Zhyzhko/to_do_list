@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { nanoid } from 'nanoid';
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage';
 
@@ -27,8 +26,6 @@ const todosSlice = createSlice({
         isComplited: {
             reducer(state, action) {
                 console.log(action)
-                // const toDoToggle = state.todos.find(todo => todo.id === action.payload);
-                // console.log(toDoToggle)
                 return {
                     ...state,
                     todos: state.todos.map(todo => {
@@ -41,26 +38,19 @@ const todosSlice = createSlice({
                       };
                     }),
                   };
-                // toDoToggle.complited = 
-                // const toDoToggle = state.todos.filter(todo => {
-                //     if(todo.id ===action.payload) {
-                //         todo.complited = !todo.complited;
-                //         return todo;
-                //     }
-                //     return todo;
-                // });
-                // console.log(toDoToggle)
-                // return {...state, todos: toDoToggle,}
-        //         const removedContacts = state.contacts.filter(contact => contact.id !== action.payload);
-        // return {...state, 
-        //     contacts: removedContacts,
-        // }
             }
-        }
+        },
+        removeTodo(state, action) {
+            // const removedTodos = state.todos.filter(todo => todo.id !== action.payload);
+            return {...state, 
+                todos: state.todos.filter(todo => todo.id !== action.payload),
+            }
+        },
+    
         }
 })
 
-export const { addTodos, isComplited } = todosSlice.actions;
+export const { addTodos, isComplited, removeTodo } = todosSlice.actions;
 export const todoReducer = todosSlice.reducer;
 
 const persistConfig = {
@@ -69,44 +59,3 @@ const persistConfig = {
 }
  
 export const todosReducer = persistReducer(persistConfig, todoReducer);
-
-
-// const contactsInitialState = {contacts: [],};
-
-// const contactsSlice = createSlice({
-//   name: "contacts",
-//   initialState: contactsInitialState,
-//   reducers: {
-//     addContact: {
-//       reducer(state, action) {
-//         state.contacts.push(action.payload);
-//           },
-//       prepare(name, number) {
-//         return {
-//           payload: {
-//             name,
-//             number,
-//             id: nanoid(),
-//           },
-//         };
-//       },
-//     },
-//     removeContact(state, action) {
-//         const removedContacts = state.contacts.filter(contact => contact.id !== action.payload);
-//         return {...state, 
-//             contacts: removedContacts,
-//         }
-//     },
-//   },
-// });
-
-// // Експортуємо генератори екшенів та редюсер
-// export const { addContact, removeContact } = contactsSlice.actions;
-// export const contactReducer = contactsSlice.reducer;
-
-// const persistConfig = {
-//   key: 'root',
-//   storage,
-// }
- 
-// export const contactsReducer = persistReducer(persistConfig, contactReducer)

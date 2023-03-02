@@ -11,9 +11,7 @@ export const ToDoForm = () => {
     const [description, setDescription] = useState('');
 
     const dispatch = useDispatch();
-const todos = useSelector(getTodos);
-// console.log(todos.length)
-
+    const todos = useSelector(getTodos);
 
     const titleId = nanoid();
     const descriptionId = nanoid();
