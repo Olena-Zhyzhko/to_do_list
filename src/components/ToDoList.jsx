@@ -1,11 +1,14 @@
 import React from 'react'
-import { 
+import { useDispatch,
     useSelector } from "react-redux";
     import { getTodos } from '../redux/selectors'
 import ModalToDo from './Modal'
+import {isComplited} from '../redux/todoSlice'
+
 
 export const ToDoList = () => {
 const todos = useSelector(getTodos);
+const dispatch = useDispatch();
 
     return (
         <table>
@@ -25,10 +28,7 @@ const todos = useSelector(getTodos);
                     <td>{description}</td>
                     <td>
                         <form>
-                            {complited ?
-                                <input type='checkbox' checked readOnly></input> :
-                                <input type='checkbox'></input>
-                            }
+                            <input type='checkbox' onChange={()=>{dispatch(isComplited(id))}} checked={complited}/>
                         </form>
                     </td>
                 </tr>

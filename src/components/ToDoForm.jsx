@@ -12,7 +12,7 @@ export const ToDoForm = () => {
 
     const dispatch = useDispatch();
 const todos = useSelector(getTodos);
-console.log(todos.length)
+// console.log(todos.length)
 
 
     const titleId = nanoid();
